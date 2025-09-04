@@ -6,13 +6,14 @@ class LessonInline(admin.StackedInline):
     model = Lesson
     extra = 5
 
-class QuestionInline(admin.StackedInline):
-    model = Question
-    extra = 2
-
 
 class ChoiceInline(admin.StackedInline):
     model = Choice
+    extra = 2
+
+
+class QuestionInline(admin.StackedInline):
+    model = Question
     extra = 2
 
 
@@ -24,14 +25,14 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description']
 
 
-class LessonAdmin(admin.ModelAdmin):
-    list_display = ['title']
-
-
 # Register Question and Choice 
 class QuestionAdmin(admin.ModelAdmin):
-    inlines= [ChoiceInline]
+    inlines = [ChoiceInline]
     list_display = ['content']
+
+
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
 
 admin.site.register(Course, CourseAdmin)
